@@ -1,0 +1,194 @@
+$bg-dark: #0f172a; // Глубокий slate оттенок (дороже выглядит)
+$border-color: rgba(255, 255, 255, 0.06);
+$accent-color: #3b82f6; // Фирменный синий Salkyn
+$text-bright: #f8fafc;
+$text-muted: #94a3b8;
+
+/* Замени только этот блок в самом начале файла */
+.headerContainer {
+  background: cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid $border-color;
+  padding: 12px 0;
+  
+  /* МЕНЯЕМ НА FIXED, ЧТОБЫ ИГНОРИРОВАТЬ ПАДДИНГ РОДИТЕЛЯ */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ЛЕВАЯ ЧАСТЬ */
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .logoBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .logoText {
+      color: $text-bright;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+    }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(59, 130, 246, 0.15);
+      color: $accent-color;
+      padding: 2px 6px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+  }
+
+  .statusIndicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    padding: 3px 10px;
+    border-radius: 100px;
+
+    .pulseDot {
+      width: 6px;
+      height: 6px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    .statusText {
+      font-size: 11px;
+      font-weight: 600;
+      color: #10b981;
+    }
+  }
+}
+
+/* НАВИГАЦИЯ */
+.nav {
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+
+  .navLink {
+    color: $text-muted;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+
+    svg {
+      opacity: 0.7;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      color: $text-bright;
+      background: rgba(255, 255, 255, 0.04);
+      
+      svg {
+        transform: translateY(-1px);
+      }
+    }
+
+    /* Стили для активной вкладки */
+    &.active {
+      color: $text-bright;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+
+      svg {
+        color: $accent-color;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* ПРАВАЯ ЧАСТЬ */
+.rightSection {
+  .viewSiteBtn {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-muted;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: $text-bright;
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+}
+
+/* Анимация пульсации статуса */
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.5; }
+}
+
+/* Адаптивность */
+@media (max-width: 640px) {
+  .mainContainer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .leftSection {
+    justify-content: space-between;
+  }
+
+  .nav {
+    justify-content: center;
+    .navLink {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  .rightSection {
+    .viewSiteBtn {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}

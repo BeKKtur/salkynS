@@ -1,0 +1,185 @@
+.footer {
+  background: linear-gradient(180deg, #050b18 0%, #030710 100%);
+  padding: 60px 0 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #fff;
+
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; // Красивое распределение по ширине
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    // Блок бренда
+    .brandBlock {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+
+      .logo {
+        width: 180px;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .description {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        line-height: 1.6;
+        max-width: 320px;
+      }
+    }
+
+    // Общие стили для заголовков в колонках
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.9);
+      position: relative;
+
+      // Тонкая стильная полосочка под заголовком колонки
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background: #3b82f6; // Наш фирменный синий акцент
+      }
+    }
+
+    // Блок контактов
+    .infoBlock {
+      .links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        a,
+        .geo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 14px;
+          text-decoration: none;
+          transition: color 0.2s ease;
+
+          svg {
+            color: #3b82f6;
+          }
+        }
+
+        a:hover {
+          color: #3b82f6;
+        }
+      }
+    }
+
+    // Блок соцсетей
+    .socialBlock {
+      .socials {
+        display: flex;
+        gap: 12px;
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          color: rgba(255, 255, 255, 0.7);
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: #fff;
+            background: #3b82f6;
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); // Неоновое свечение при ховере
+            transform: translateY(-3px);
+          }
+        }
+      }
+    }
+  }
+
+  // Нижняя панель (Копирайт)
+  .bottomBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+
+    .developer {
+      font-weight: 500;
+      transition: color 0.2s ease;
+      &:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+
+/* ========================= */
+/* Умный Адаптив */
+/* ========================= */
+
+@media (max-width: 992px) {
+  .footer {
+    .mainContainer {
+      grid-template-columns: 1.5fr 1fr; // Сужаем сетку до 2х колонок, убирая соцсети в сторону
+      gap: 30px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px 0;
+
+    .mainContainer {
+      grid-template-columns: 1fr; // Выстраиваем всё в один аккуратный стек (колонку)
+      gap: 30px;
+      text-align: center;
+
+      .brandBlock,
+      .infoBlock,
+      .socialBlock {
+        align-items: center;
+
+        h4::after {
+          left: 50%;
+          transform: translateX(-50%); // Центрируем полосочки под заголовками
+        }
+      }
+
+      .brandBlock .description {
+        max-width: 100%;
+      }
+
+      .infoBlock .links {
+        align-items: center;
+      }
+
+      .socialBlock .socials {
+        justify-content: center;
+      }
+    }
+
+    .bottomBar {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+  }
+}

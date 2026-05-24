@@ -1,0 +1,154 @@
+// .container {
+//   .mainContainer {
+//     padding-block: 30px;
+//     .line {
+//       border-top: 1px solid black;
+//       margin-top: 15px;
+//       padding-top: 15px;
+//     }
+//     .grid {
+//       padding: 20px;
+//       display: flex;
+//       gap: 20px;
+
+//       overflow-x: auto;
+//       flex-wrap: nowrap; 
+//     }
+//     .grid::-webkit-scrollbar {
+//       display: none;
+//     }
+
+//     .grid {
+//       -ms-overflow-style: none;
+//       scrollbar-width: none;
+//     }
+//     .title {
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//         a {
+//             color: rgb(109, 109, 109);
+//         }
+//     }
+//   }
+// }
+.container {
+  background-color: #f8fafc; // Мягкий фоновый цвет, чтобы карточки выделялись
+  min-height: 100vh;
+
+  .mainContainer {
+    padding-block: 60px; // Больше воздуха сверху и снизу
+    display: flex;
+    flex-direction: column;
+    gap: 50px; // Красивое расстояние между блоками категорий вместо скучных линий
+
+    .line {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 16px; // Скругляем блоки категорий для мягкости
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); // Едва заметная дорогая тень
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px); // Легкий интерактив при наведении на секцию
+      }
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f1f5f9; // Современная тонкая линия разделения
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #0f172a; // Глубокий темный цвет вместо чисто черного
+        letter-spacing: -0.02em;
+        margin: 0;
+        position: relative;
+
+        // Красивый акцент под заголовком
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 0;
+          width: 40px;
+          height: 3px;
+          background: #2563eb; // Синий акцентный цвет (под твой логотип SALKYN)
+          border-radius: 2px;
+        }
+      }
+
+      a {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #2563eb; // Делаем ссылку "Больше" акцентной
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+
+        &::after {
+          content: '→'; // Добавляем стрелочку динамически
+          transition: transform 0.2s ease;
+        }
+
+        &:hover {
+          color: #1d4ed8;
+          
+          &::after {
+            transform: translateX(4px); // Стрелочка красиво сдвигается при ховере
+          }
+        }
+      }
+    }
+
+    .grid {
+      display: flex;
+      gap: 24px;
+      padding-block: 15px; // Место для теней карточек, чтобы они не обрезались скроллом
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      scroll-behavior: smooth; // Плавный скролл
+      
+      // Стилизация горизонтального скролла для Webkit (сделаем его тонким и аккуратным)
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+        &:hover {
+          background: #94a3b8;
+        }
+      }
+
+      // Если хочешь полностью скрыть скроллбар, раскомментируй код ниже:
+      /*
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      */
+
+      // Немного магии: делаем так, чтобы карточки внутри скролла имели одинаковую ширину
+      & > div, & > a {
+        flex: 0 0 280px; // Каждая карточка будет строго 280px в ширину
+        max-width: 280px;
+      }
+    }
+  }
+}

@@ -1,0 +1,484 @@
+// .container {
+//   padding: 50px 0;
+//   background: #f5f7fb;
+//   min-height: 100vh;
+
+//   .mainContainer {
+//     display: flex;
+//     gap: 50px;
+//     align-items: flex-start;
+//     background: #fff;
+//     border-radius: 24px;
+//     padding: 35px;
+//     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+
+//     img {
+//       width: 100%;
+//       max-width: 550px;
+//       height: 500px;
+//       object-fit: cover;
+//       border-radius: 20px;
+//       transition: 0.3s;
+
+//       &:hover {
+//         transform: scale(1.02);
+//       }
+//     }
+
+//     .text {
+//       flex: 1;
+//       display: flex;
+//       flex-direction: column;
+//       gap: 20px;
+
+//       h3 {
+//         font-size: 34px;
+//         font-weight: 700;
+//         line-height: 1.3;
+//         color: #1e1e1e;
+//            font-weight: 13;
+// //         max-height: 72px; // ~3 строки
+// //         overflow-y: auto;
+// //         overflow-x: hidden;
+// //         line-height: 24px;
+//       }
+      
+
+//       .price {
+//         font-size: 30px;
+//         font-weight: 700;
+//         color: #4f46e5;
+//       }
+
+//       .line {
+//         width: 100%;
+//         height: 1px;
+//         background: #dcdcdc;
+//       }
+
+//       .description {
+//         font-size: 17px;
+//         line-height: 1.8;
+//         color: #555;
+//       }
+
+//       button {
+//         width: fit-content;
+//         margin-top: 10px;
+//         padding: 14px 28px;
+//         border: none;
+//         border-radius: 14px;
+//         background: #4f46e5;
+//         color: white;
+//         font-size: 16px;
+//         font-weight: 600;
+//         cursor: pointer;
+//         transition: 0.3s;
+
+//         &:hover {
+//           transform: translateY(-2px);
+//           opacity: 0.9;
+//         }
+
+//         &:active {
+//           transform: scale(0.98);
+//         }
+//       }
+//     }
+//   }
+// }
+
+// /* ========================= */
+// /* 1200px */
+// /* ========================= */
+
+// @media (max-width: 1200px) {
+//   .container {
+//     .mainContainer {
+//       gap: 30px;
+
+//       img {
+//         max-width: 450px;
+//         height: 420px;
+//       }
+
+//       .text {
+//         h3 {
+//           font-size: 28px;
+//         }
+
+//         .price {
+//           font-size: 26px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// /* ========================= */
+// /* 992px */
+// /* ========================= */
+
+// @media (max-width: 992px) {
+//   .container {
+//     .mainContainer {
+//       flex-direction: column;
+//       align-items: center;
+
+//       img {
+//         width: 100%;
+//         max-width: 100%;
+//         height: 450px;
+//       }
+
+//       .text {
+//         width: 100%;
+
+//         h3 {
+//           font-size: 26px;
+//         }
+
+//         .price {
+//           font-size: 24px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// /* ========================= */
+// /* 768px */
+// /* ========================= */
+
+// @media (max-width: 768px) {
+//   .container {
+//     padding: 30px 0;
+
+//     .mainContainer {
+//       padding: 20px;
+//       border-radius: 18px;
+
+//       img {
+//         height: 350px;
+//         border-radius: 16px;
+//       }
+
+//       .text {
+//         gap: 15px;
+
+//         h3 {
+//           font-size: 22px;
+//         }
+
+//         .price {
+//           font-size: 22px;
+//         }
+
+//         .description {
+//           font-size: 15px;
+//           line-height: 1.6;
+//         }
+
+//         button {
+//           width: 100%;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// /* ========================= */
+// /* 480px */
+// /* ========================= */
+
+// @media (max-width: 480px) {
+//   .container {
+//     .mainContainer {
+//       padding: 15px;
+
+//       img {
+//         height: 260px;
+//       }
+
+//       .text {
+//         h3 {
+//           font-size: 20px;
+//         }
+
+//         .price {
+//           font-size: 20px;
+//         }
+
+//         .description {
+//           font-size: 14px;
+//         }
+//       }
+//     }
+//   }
+// }
+$primary-color: #2563eb; // Современный синий под стать логотипу Salkyn
+$success-color: #10b981; // Зеленый для WhatsApp
+$text-dark: #1e293b;
+$text-muted: #64748b;
+
+.container {
+  padding: 60px 0;
+  background: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  .mainContainer {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 32px;
+    padding: 45px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+
+    .imageWrapper {
+      flex: 1;
+      max-width: 550px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #f1f5f9;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+
+      img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          transform: scale(1.04);
+        }
+      }
+    }
+
+    .textBlock {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .badge {
+        width: fit-content;
+        background: rgba(37, 99, 235, 0.08);
+        color: $primary-color;
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 16px;
+      }
+
+      h1 {
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 1.25;
+        color: $text-dark;
+        margin-bottom: 20px;
+      }
+
+      .priceRow {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .priceLabel {
+          font-size: 16px;
+          color: $text-muted;
+          font-weight: 500;
+        }
+
+        .price {
+          font-size: 34px;
+          font-weight: 800;
+          color: $primary-color;
+        }
+      }
+
+      .line {
+        width: 100%;
+        height: 1px;
+        background: #e2e8f0;
+        margin-bottom: 25px;
+      }
+
+      .infoSection {
+        margin-bottom: 25px;
+
+        h4 {
+          font-size: 16px;
+          font-weight: 700;
+          color: $text-dark;
+          margin-bottom: 10px;
+        }
+
+        .description {
+          font-size: 16px;
+          line-height: 1.7;
+          color: #475569;
+        }
+      }
+
+      .featuresGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 35px;
+
+        .featureItem {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: #f8fafc;
+          padding: 12px 16px;
+          border-radius: 14px;
+          border: 1px solid #f1f5f9;
+
+          svg {
+            color: $success-color;
+          }
+
+          span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #334155;
+          }
+        }
+      }
+
+      .actionButtons {
+        display: flex;
+        gap: 15px;
+
+        a {
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 16px 32px;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 16px;
+          transition: all 0.25s ease;
+        }
+
+        .orderBtn {
+          background: $success-color;
+          color: white;
+          flex: 2;
+          box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+
+          &:hover {
+            background: #0d9488;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(16, 185, 129, 0.3);
+          }
+        }
+
+        .phoneBtn {
+          background: #f1f5f9;
+          color: $text-dark;
+          flex: 1;
+          border: 1px solid #e2e8f0;
+
+          &:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+          }
+        }
+
+        a:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+/* Стили состояния загрузки (Skeleton UI) */
+.skeleton {
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  
+  .skeletonImg, .skeletonText {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 16px;
+  }
+  .skeletonImg { width: 50%; height: 450px; }
+  .skeletonText { width: 45%; height: 450px; }
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Ошибки */
+.errorContainer {
+  text-align: center;
+  padding: 100px 0;
+  color: $text-dark;
+  h3 { font-size: 24px; margin-bottom: 20px; }
+  .backBtn {
+    padding: 12px 24px;
+    background: $primary-color;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+  }
+}
+
+/* ========================= */
+/* Адаптив под медиа-запросы */
+/* ========================= */
+
+@media (max-width: 1200px) {
+  .container .mainContainer {
+    gap: 40px;
+    padding: 35px;
+    .imageWrapper img { height: 440px; }
+    .textBlock h1 { font-size: 30px; }
+  }
+}
+
+@media (max-width: 992px) {
+  .container .mainContainer {
+    flex-direction: column;
+    .imageWrapper { max-width: 100%; width: 100%; img { height: 400px; } }
+    .textBlock { width: 100%; }
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 20px 0;
+    .mainContainer {
+      padding: 20px;
+      border-radius: 20px;
+      .imageWrapper img { height: 280px; }
+      .textBlock {
+        h1 { font-size: 24px; }
+        .priceRow .price { font-size: 26px; }
+        .featuresGrid { grid-template-columns: 1fr; gap: 10px; }
+        .actionButtons {
+          flex-direction: column;
+          .orderBtn, .phoneBtn { width: 100%; flex: none; }
+        }
+      }
+    }
+  }
+}

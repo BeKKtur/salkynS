@@ -1,0 +1,80 @@
+.container {
+  border-top: 1px solid #2c63b6;
+  padding-block: 20px;
+  background-color: #1e232b;
+  .mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .select {
+      background-color: #c0c6cf;
+      padding: 7px 40px 7px 10px;
+    }
+    form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      input {
+        width: 600px;
+        padding: 7px;
+      }
+      button {
+        background-color: #2c63b6;
+        color: #fff;
+      }
+    }
+    .cart {
+      button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        span {
+          color: #2c63b6;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1534px) {
+}
+@media (max-width: 1200px) {
+}
+@media (max-width: 1024px) {
+  .container {
+    font-size: 14px;
+    .mainContainer {
+      form {
+        input {
+          width: 270px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 640px) {
+  .container {
+    font-size: 14px;
+    .mainContainer {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
+@media (max-width: 475px) {
+}
+@media (max-width: 375px) {
+  .container {
+    font-size: 14px;
+    .mainContainer {
+      form {
+        input {
+          width: 230px;
+        }
+      }
+    }
+  }
+}
