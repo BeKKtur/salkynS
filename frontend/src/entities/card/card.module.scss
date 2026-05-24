@@ -282,7 +282,7 @@
 //   max-width: 280px;  // Ограничиваем максимальную ширину карточки
 //   min-width: 260px;  // Гарантируем минимальную ширину
 //   flex: 0 0 280px;   // КРИТИЧНО ДЛЯ СКРОЛЛА: запрещает карточкам сжиматься или растягиваться неравномерно
-  
+
 //   background: #ffffff;
 //   border-radius: 22px;
 //   overflow: hidden;
@@ -411,12 +411,12 @@
 
 //     .content {
 //       padding: 14px;
-      
+
 //       .text h3 {
 //         font-size: 16px;
 //         height: 44px;
 //       }
-      
+
 //       .btns button, .btns a {
 //         padding: 10px 4px;
 //         font-size: 13px;
@@ -436,7 +436,6 @@
 //     }
 //   }
 // }
-
 
 // Переменные для легкой смены цветов
 $primary-color: #4f46e5; // Основной синий
@@ -458,7 +457,9 @@ $bg-light: #f4f4f4;
   border-radius: 16px; // Немного уменьшили для большей строгости
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); // Более плавная анимация
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1); // Мягкая базовая тень
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.1); // Мягкая базовая тень
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -466,7 +467,7 @@ $bg-light: #f4f4f4;
 
   // Верхний синий акцент
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -479,8 +480,10 @@ $bg-light: #f4f4f4;
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 5px 10px rgba(0, 0, 0, 0.05); // "Дорогая" тень
-    
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.08),
+      0 5px 10px rgba(0, 0, 0, 0.05); // "Дорогая" тень
+
     &::before {
       transform: scaleX(1); // Показываем акцент при наведении
     }
@@ -526,7 +529,7 @@ $bg-light: #f4f4f4;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        height: 46px; 
+        height: 46px;
       }
 
       p {
@@ -543,9 +546,9 @@ $bg-light: #f4f4f4;
           color: $text-dark; // Цена темная, не синяя, так стильнее
           display: block; // Цена на новой строке
           margin-top: 2px;
-          
+
           &::after {
-            content: ' KGS';
+            content: " KGS";
             font-size: 14px;
             color: $text-muted;
             font-weight: 600;
@@ -584,28 +587,28 @@ $bg-light: #f4f4f4;
       .delete {
         background: rgba($danger-color, 0.1); // Полупрозрачный фон
         color: $danger-color;
-        
+
         &::before {
-          content: '✕'; // Простая иконка
+          content: "✕"; // Простая иконка
           font-size: 12px;
         }
-        
-        &:hover { 
+
+        &:hover {
           background: rgba($danger-color, 0.2);
           transform: translateY(-1px);
         }
       }
 
       .edit {
-        background: rgba($accent-color, 0.1);
+        color: color.adjust($accent-color, $lightness: -25%);
         color: darken($accent-color, 25%);
-        
+
         &::before {
-          content: '✎';
+          content: "✎";
           font-size: 12px;
         }
 
-        &:hover { 
+        &:hover {
           background: rgba($accent-color, 0.2);
           transform: translateY(-1px);
         }
@@ -615,23 +618,23 @@ $bg-light: #f4f4f4;
         background: rgba($primary-color, 0.08); // Полупрозрачный фон
         color: $primary-color;
         border: 1px solid rgba($primary-color, 0.1);
-        
+
         // Эффект "стекла"
         backdrop-filter: blur(2px);
-        
+
         &::after {
-          content: '→'; // Иконка стрелки
+          content: "→"; // Иконка стрелки
           font-size: 14px;
           transition: transform 0.2s ease;
         }
 
-        &:hover { 
+        &:hover {
           background: rgba($primary-color, 0.15);
           color: $primary-hover;
           border-color: rgba($primary-color, 0.2);
           transform: translateY(-1px);
           box-shadow: 0 3px 6px rgba($primary-color, 0.1);
-          
+
           &::after {
             transform: translateX(3px); // Стрелка двигается
           }
@@ -661,23 +664,24 @@ $bg-light: #f4f4f4;
     .content {
       padding: 16px;
       gap: 14px;
-      
+
       .text {
         h3 {
           font-size: 15px;
           height: 40px;
         }
-        
+
         p span {
           font-size: 17px;
         }
       }
-      
+
       .btns {
         padding-top: 12px;
         gap: 6px;
-        
-        button, a {
+
+        button,
+        a {
           padding: 8px 2px;
           font-size: 12px;
         }
