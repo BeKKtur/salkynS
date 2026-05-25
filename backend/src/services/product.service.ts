@@ -100,25 +100,27 @@ export const deleteProductService = async (id: number) => {
   return res.rows[0];
 };
 export const updateProductService = async (updateBody: IBody, id: number) => {
+  // Используем COALESCE для всех полей, чтобы база оставляла старые данные,
+  // если новые данные (updateBody) пустые или null.
   const res = await pool.query(
     `
-    update products
-    set 
-      title=$1,
-      image=COALESCE($2, image),
-      price=$3::int,
-      description=$4,
-      count=$5::int,
-      category=$6
-    where id=$7
-    returning *
+    UPDATE products
+    SET 
+      title = COALESCE(NULLIF($1, ''), title),
+      image = COALESCE(NULLIF($2, ''), image),
+      price = COALESCE($3, price),
+      description = COALESCE(NULLIF($4, ''), description),
+      count = COALESCE($5, count),
+      category = COALESCE(NULLIF($6, ''), category)
+    WHERE id = $7
+    RETURNING *
     `,
     [
       updateBody.title,
       updateBody.image,
-      updateBody.price,
+      updateBody.price === 0 ? null : updateBody.price, // Если 0 - считаем, что не меняли
       updateBody.description,
-      updateBody.count,
+      updateBody.count === 0 ? null : updateBody.count,
       updateBody.category,
       id,
     ],

@@ -1,265 +1,242 @@
-@use "sass:color";
-// Переменные для легкой смены цветов
-$primary-color: #4f46e5; // Основной синий
-$primary-hover: #4338ca;
-$accent-color: #facc15; // Желтый для редактирования
-$danger-color: #ef4444; // Красный для удаления
-$text-dark: #1f1f1f;
-$text-muted: #71717a;
-$bg-white: #ffffff;
-$bg-light: #f4f4f4;
+// card.module.scss
 
 .cardContainer {
-  width: 100%;
-  max-width: 280px;
-  min-width: 260px;
-  flex: 0 0 280px; // Критично для скролла
-
-  background: $bg-white;
-  border-radius: 16px; // Немного уменьшили для большей строгости
+  background: #ffffff;
+  border-radius: 20px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); // Более плавная анимация
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.05),
-    0 1px 2px rgba(0, 0, 0, 0.1); // Мягкая базовая тень
   display: flex;
   flex-direction: column;
-  height: 100%;
-  position: relative; // Для позиционирования акцента
-
-  // Верхний синий акцент
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: $primary-color;
-    transform: scaleX(0); // Скрыта по умолчанию
-    transition: transform 0.3s ease;
-  }
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  height: 100%; // Чтобы карточки были одной высоты
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow:
-      0 10px 25px rgba(0, 0, 0, 0.08),
-      0 5px 10px rgba(0, 0, 0, 0.05); // "Дорогая" тень
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-color: rgba(79, 70, 229, 0.2);
+  }
 
-    &::before {
-      transform: scaleX(1); // Показываем акцент при наведении
-    }
+  .imageWrapper {
+    width: 100%;
+    // aspect-ratio - лучшее решение для геометрии
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 
-    // Легкое свечение
     img {
-      filter: brightness(1.02);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
   }
 
-  img {
-    width: 100%;
-    height: 200px; // Немного компактнее
-    object-fit: cover;
-    background: $bg-light;
-    flex-shrink: 0;
-    transition: filter 0.3s ease;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03); // Едва заметная граница
+  // На десктопе сохраняем hover эффект
+  &:hover .imageWrapper img {
+    transform: scale(1.05);
   }
 
   .content {
-    padding: 20px; // Больше воздуха
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex: 1;
-    gap: 18px; // Чуть больше расстояние
+    gap: 12px;
+    flex-grow: 1; // Занимает всё доступное место
 
-    .text {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111;
+      margin: 0;
+      // Ограничение текста в 2 строки
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.3;
+    }
 
-      h3 {
-        font-size: 17px; // Немного меньше для аккуратности
-        font-weight: 700;
-        line-height: 1.35;
-        color: $text-dark;
-        letter-spacing: -0.01em; // Современный отступ
+    .price {
+      font-size: 20px;
+      font-weight: 800;
+      color: #000;
+      margin-bottom: 5px;
+      line-height: 1;
 
-        // Ограничение текста
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        height: 46px;
-      }
-
-      p {
-        font-size: 13px; // Меньше, как подпись
+      span {
+        font-size: 14px;
         font-weight: 500;
-        color: $text-muted;
-        line-height: 1.2;
-        text-transform: uppercase; // Сумма капсом
-        letter-spacing: 0.05em; // Разрядка
+        color: #666;
+        margin-left: 2px;
+      }
+    }
+  }
 
-        span {
-          font-size: 19px; // Основной акцент на цене
-          font-weight: 800;
-          color: $text-dark; // Цена темная, не синяя, так стильнее
-          display: block; // Цена на новой строке
-          margin-top: 2px;
+  .actions {
+    margin-top: auto; // Прижимает кнопки к низу карточки
+    display: flex;
+    gap: 8px;
 
-          &::after {
-            content: " KGS";
-            font-size: 14px;
-            color: $text-muted;
-            font-weight: 600;
-          }
-        }
+    button,
+    .detailBtn {
+      height: 44px; // Тач-стандарт
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    // Для админа
+    .deleteBtn {
+      background: #fee2e2;
+      color: #dc2626;
+      width: 44px;
+      &:hover {
+        background: #fecaca;
+      }
+    }
+    .editBtn {
+      background: #fef3c7;
+      color: #d97706;
+      width: 44px;
+      &:hover {
+        background: #fde68a;
       }
     }
 
-    .btns {
-      display: flex;
-      gap: 10px;
-      margin-top: auto;
-      border-top: 1px solid rgba(0, 0, 0, 0.05); // Разделитель
-      padding-top: 16px;
+    // Кнопка подтверждения удаления
+    .confirmBtn {
+      background: #dc2626 !important;
+      color: white !important;
+      width: auto !important;
+      padding: 0 16px;
+      font-size: 12px !important;
+      animation: pulse 1.5s infinite;
+    }
+    .cancelBtn {
+      background: #e5e7eb;
+      color: #374151;
+      width: auto !important;
+      padding: 0 16px;
+      font-size: 12px;
+    }
 
-      button,
-      a {
-        flex: 1;
-        border: none;
-        border-radius: 10px; // Чуть строже
-        padding: 10px 4px; // Компактнее
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-        text-align: center;
-        transition: all 0.2s ease;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px; // Место для иконок
-        text-transform: uppercase; // Кнопки капсом
-        letter-spacing: 0.02em;
-      }
+    // Основная кнопка
+    .detailBtn {
+      flex: 1;
+      background: #4f46e5;
+      color: white;
 
-      .delete {
-        background: rgba($danger-color, 0.1); // Полупрозрачный фон
-        color: $danger-color;
-
-        &::before {
-          content: "✕"; // Простая иконка
-          font-size: 12px;
-        }
-
-        &:hover {
-          background: rgba($danger-color, 0.2);
-          transform: translateY(-1px);
-        }
-      }
-
-      .edit {
-        color: color.adjust($accent-color, $lightness: -25%);
-        color: darken($accent-color, 25%);
-
-        &::before {
-          content: "✎";
-          font-size: 12px;
-        }
-
-        &:hover {
-          background: rgba($accent-color, 0.2);
-          transform: translateY(-1px);
-        }
-      }
-
-      .detail {
-        background: rgba($primary-color, 0.08); // Полупрозрачный фон
-        color: $primary-color;
-        border: 1px solid rgba($primary-color, 0.1);
-
-        // Эффект "стекла"
-        backdrop-filter: blur(2px);
-
-        &::after {
-          content: "→"; // Иконка стрелки
-          font-size: 14px;
-          transition: transform 0.2s ease;
-        }
-
-        &:hover {
-          background: rgba($primary-color, 0.15);
-          color: $primary-hover;
-          border-color: rgba($primary-color, 0.2);
-          transform: translateY(-1px);
-          box-shadow: 0 3px 6px rgba($primary-color, 0.1);
-
-          &::after {
-            transform: translateX(3px); // Стрелка двигается
-          }
-        }
-      }
-
-      button:active,
-      a:active {
-        transform: scale(0.98) translateY(0);
+      &:hover {
+        background: #4338ca;
       }
     }
   }
 }
 
-/* Адаптив */
-@media (max-width: 768px) {
+// ==========================================
+// Адаптив для МОБИЛЬНЫХ ТЕЛЕФОНОВ
+// ==========================================
+@media (max-width: 480px) {
   .cardContainer {
-    max-width: 250px;
-    min-width: 230px;
-    flex: 0 0 250px;
-    border-radius: 12px;
+    border-radius: 16px;
 
-    img {
-      height: 160px;
+    .imageWrapper {
+      aspect-ratio: 4 / 3; // Чуть компактнее картинка
     }
 
     .content {
       padding: 16px;
-      gap: 14px;
+      gap: 8px;
 
-      .text {
-        h3 {
-          font-size: 15px;
-          height: 40px;
-        }
-
-        p span {
-          font-size: 17px;
-        }
+      h3 {
+        font-size: 14px; // Уменьшаем шрифт
       }
 
-      .btns {
-        padding-top: 12px;
-        gap: 6px;
-
-        button,
-        a {
-          padding: 8px 2px;
+      .price {
+        font-size: 17px; // Компактная цена
+        span {
           font-size: 12px;
         }
+      }
+    }
+
+    .actions {
+      margin-top: 5px;
+      gap: 6px;
+
+      button,
+      .detailBtn {
+        height: 44px; // Сохраняем размер для тапа пальцем
+        border-radius: 10px;
+        font-size: 13px;
       }
     }
   }
 }
 
-@media (max-width: 480px) {
-  .cardContainer {
-    max-width: 100%;
-    min-width: 100%;
-    flex: 0 0 100%;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.skeleton {
+  animation: pulse 1.5s infinite ease-in-out;
+}
 
-    img {
-      height: 180px;
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.imageWrapper {
+  position: relative; // Ключевой момент: позволяет позиционировать сердечко внутри картинки
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .heartBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8); // Полупрозрачный фон
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 10; // Чтобы кнопка была поверх всего
+
+    &:hover {
+      background: white;
+      transform: scale(1.1);
     }
   }
 }

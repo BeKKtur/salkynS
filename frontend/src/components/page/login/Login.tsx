@@ -17,7 +17,6 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Запрос на бэкенд (порт 5555)
       const response = await fetch("http://localhost:5555/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -27,11 +26,14 @@ export default function Login() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Записываем куки для middleware.ts
+        // 1. Сохраняем токен в localStorage (для хука usePostProducts)
+        localStorage.setItem("accessToken", data.token);
+
+        // 2. Сохраняем в куки (для middleware.ts)
         document.cookie = `auth_token=${data.token}; path=/; max-age=86400; SameSite=Strict`;
         document.cookie = `user_role=${data.role}; path=/; max-age=86400; SameSite=Strict`;
 
-        // Перенаправляем в админку
+        // 3. Перенаправляем
         router.push("/admin");
         router.refresh();
       } else {

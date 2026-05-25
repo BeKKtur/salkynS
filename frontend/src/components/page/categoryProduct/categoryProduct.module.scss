@@ -1,134 +1,41 @@
-// .container {
-//   .mainContainer {
-//     padding-block: 30px;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 20px;
-//     h1 {
-//       margin-bottom: 20px;
-//     }
-//     .cards {
-//       display: flex;
-//       flex-wrap: wrap;
-//       justify-content: space-between;
-//       gap: 15px;
-//       align-items: center;
-//     }
-//   }
-// }
 .container {
-  padding: 50px 0;
+  padding: 60px 0;
   min-height: 100vh;
-  background: #f5f7fb;
+  background: #f8fafc;
 
   .mainContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    .header {
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
 
-    h1 {
-      font-size: 38px;
-      font-weight: 700;
-      color: #1f1f1f;
-      text-transform: capitalize;
-      position: relative;
-      width: fit-content;
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -8px;
-        width: 60%;
-        height: 4px;
-        border-radius: 10px;
-        background: #4f46e5;
+      h1 {
+        font-size: 42px;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0;
+      }
+      .count {
+        color: #64748b;
+        font-size: 16px;
       }
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
+      // Вся мощь CSS Grid в одной строке:
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
     }
   }
 }
 
-/* ========================= */
-/* 1200px */
-/* ========================= */
-
-@media (max-width: 1200px) {
+// Минимум медиа-запросов, так как Grid делает всё сам
+@media (max-width: 640px) {
   .container {
-    .mainContainer {
-      .cards {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-  }
-}
-
-/* ========================= */
-/* 992px */
-/* ========================= */
-
-@media (max-width: 992px) {
-  .container {
-    padding: 40px 0;
-
-    .mainContainer {
-      h1 {
-        font-size: 32px;
-      }
-
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-    }
-  }
-}
-
-/* ========================= */
-/* 768px */
-/* ========================= */
-
-@media (max-width: 768px) {
-  .container {
-    .mainContainer {
-      gap: 20px;
-
-      h1 {
-        font-size: 28px;
-
-        &::after {
-          height: 3px;
-        }
-      }
-
-      .cards {
-        gap: 16px;
-      }
-    }
-  }
-}
-
-/* ========================= */
-/* 576px */
-/* ========================= */
-
-@media (max-width: 576px) {
-  .container {
-    padding: 25px 0;
-
-    .mainContainer {
-      h1 {
-        font-size: 24px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-    }
+    padding: 30px 0;
+    .mainContainer .header h1 { font-size: 32px; }
+    .cards { grid-template-columns: 1fr; gap: 20px; }
   }
 }

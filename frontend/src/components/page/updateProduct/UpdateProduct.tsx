@@ -290,7 +290,7 @@ export default function UpdateProduct({ product }: Props) {
 
     mutate({
       id: form.id,
-      body: formData,
+      data: formData,
     });
   };
 

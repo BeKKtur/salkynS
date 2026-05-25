@@ -1,79 +1,40 @@
-// .container {
-//   .mainContainer {
-//     padding-block: 30px;
-//     .line {
-//       border-top: 1px solid black;
-//       margin-top: 15px;
-//       padding-top: 15px;
-//     }
-//     .grid {
-//       padding: 20px;
-//       display: flex;
-//       gap: 20px;
+// grouped.module.scss
 
-//       overflow-x: auto;
-//       flex-wrap: nowrap; 
-//     }
-//     .grid::-webkit-scrollbar {
-//       display: none;
-//     }
-
-//     .grid {
-//       -ms-overflow-style: none;
-//       scrollbar-width: none;
-//     }
-//     .title {
-//         display: flex;
-//         align-items: center;
-//         justify-content: space-between;
-//         a {
-//             color: rgb(109, 109, 109);
-//         }
-//     }
-//   }
-// }
 .container {
-  background-color: #f8fafc; // Мягкий фоновый цвет, чтобы карточки выделялись
+  background-color: #f8fafc; // Светлый фон
   min-height: 100vh;
+  padding: 40px 0; // Отступы сверху и снизу страницы
 
   .mainContainer {
-    padding-block: 60px; // Больше воздуха сверху и снизу
     display: flex;
     flex-direction: column;
-    gap: 50px; // Красивое расстояние между блоками категорий вместо скучных линий
+    gap: 50px; // Красивое расстояние между блоками категорий
 
-    .line {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .section {
       background: #ffffff;
       padding: 24px;
-      border-radius: 16px; // Скругляем блоки категорий для мягкости
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); // Едва заметная дорогая тень
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
       border: 1px solid rgba(0, 0, 0, 0.03);
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: translateY(-2px); // Легкий интерактив при наведении на секцию
-      }
     }
 
-    .title {
+    .header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
       padding-bottom: 8px;
-      border-bottom: 2px solid #f1f5f9; // Современная тонкая линия разделения
+      border-bottom: 2px solid #f1f5f9;
 
-      h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #0f172a; // Глубокий темный цвет вместо чисто черного
-        letter-spacing: -0.02em;
+      h2 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #0f172a; // Глубокий темный
         margin: 0;
         position: relative;
+        letter-spacing: -0.02em;
 
-        // Красивый акцент под заголовком
+        // Синий акцент под заголовком
         &::after {
           content: '';
           position: absolute;
@@ -81,74 +42,92 @@
           left: 0;
           width: 40px;
           height: 3px;
-          background: #2563eb; // Синий акцентный цвет (под твой логотип SALKYN)
+          background: #2563eb;
           border-radius: 2px;
         }
       }
 
       a {
-        font-size: 0.95rem;
+        font-size: 14px;
         font-weight: 600;
-        color: #2563eb; // Делаем ссылку "Больше" акцентной
+        color: #2563eb; // Синий акцент
         text-decoration: none;
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 6px;
         transition: all 0.2s ease;
+        white-space: nowrap; // Чтобы текст не переносился
 
-        &::after {
-          content: '→'; // Добавляем стрелочку динамически
+        span {
           transition: transform 0.2s ease;
         }
 
         &:hover {
-          color: #1d4ed8;
+          color: #1d4ed8; // Более темный синий на hover
           
-          &::after {
-            transform: translateX(4px); // Стрелочка красиво сдвигается при ховере
+          span {
+            transform: translateX(4px); // Стрелочка красиво сдвигается
           }
         }
       }
     }
 
     .grid {
-      display: flex;
+      display: grid;
+      // Десктопная сетка (автоматически 3-5 в ряд)
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 24px;
-      padding-block: 15px; // Место для теней карточек, чтобы они не обрезались скроллом
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      scroll-behavior: smooth; // Плавный скролл
-      
-      // Стилизация горизонтального скролла для Webkit (сделаем его тонким и аккуратным)
-      &::-webkit-scrollbar {
-        height: 6px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+// ==========================================
+// Адаптив для МОБИЛЬНЫХ ТЕЛЕФОНОВ
+// ==========================================
+@media (max-width: 640px) {
+  .container {
+    padding: 20px 0; // Меньше отступы по краям экрана
+
+    .mainContainer {
+      gap: 30px; // Меньше расстояние между категориями
+
+      .section {
+        padding: 16px; // Внутри блока меньше отступы
+        border-radius: 12px;
       }
-      &::-webkit-scrollbar-track {
-        background: #f1f5f9;
-        border-radius: 10px;
-      }
-      &::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 10px;
-        &:hover {
-          background: #94a3b8;
+
+      .header {
+        margin-bottom: 16px;
+
+        h2 {
+          font-size: 19px; // Уменьшаем заголовок, чтобы не накладывался
+
+          &::after {
+            bottom: -6px; // Подвигаем линию
+          }
+        }
+        
+        a {
+          font-size: 12px; // Уменьшаем "Смотреть все"
         }
       }
 
-      // Если хочешь полностью скрыть скроллбар, раскомментируй код ниже:
-      /*
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      */
-
-      // Немного магии: делаем так, чтобы карточки внутри скролла имели одинаковую ширину
-      & > div, & > a {
-        flex: 0 0 280px; // Каждая карточка будет строго 280px в ширину
-        max-width: 280px;
+      .grid {
+        // ЭТОТ КОД ДЕЛАЕТ ДВЕ КАРТОЧКИ В РЯД
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px; // Маленькое расстояние между карточками
       }
     }
   }
+}
+
+// Loading state
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  font-weight: 600;
+  color: #64748b;
 }

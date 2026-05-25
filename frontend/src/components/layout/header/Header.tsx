@@ -1,7 +1,10 @@
 import { Phone, MessageSquare } from "lucide-react"; // npm i lucide-react
 import scss from "./header.module.scss";
-
+import { Heart } from "lucide-react";
+import Link from "next/link";
+import { useFavoriteStore } from "@/store/useFavoriteStore";
 export default function Header() {
+  const favorites = useFavoriteStore((state) => state.favorites);
   return (
     <header className={scss.header}>
       <div className="container">
@@ -21,6 +24,16 @@ export default function Header() {
 
             {/* Кнопки связи */}
             <div className={scss.contactActions}>
+              <Link href="/favorites" className={scss.favBtn}>
+                <Heart
+                  size={20}
+                  fill={favorites.length > 0 ? "#ef4444" : "none"}
+                  color={favorites.length > 0 ? "#ef4444" : "currentColor"}
+                />
+                {favorites.length > 0 && (
+                  <span className={scss.count}>{favorites.length}</span>
+                )}
+              </Link>
               <a href="tel:+996552320914" className={scss.phoneBtn}>
                 <Phone size={16} />
                 <span>+996 552 320 914</span>

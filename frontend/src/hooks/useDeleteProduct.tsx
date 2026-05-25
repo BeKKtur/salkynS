@@ -13,22 +13,24 @@ interface IProduct {
   category: string;
   description: string;
 }
-
 export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["delete"],
     mutationFn: async (id: number) => {
-      const responce = await axios.delete<IProduct>(`${API}/products/${id}`);
-      return responce.data;
+      // Достаем токен из localStorage
+      const token = localStorage.getItem("accessToken");
+
+      const response = await axios.delete<IProduct>(`${API}/products/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Передаем токен
+        },
+      });
+      return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["get"],
-      });
-      queryClient.invalidateQueries({
-        queryKey: ["grouped-products"],
-      });
+      queryClient.invalidateQueries({ queryKey: ["get"] });
+      queryClient.invalidateQueries({ queryKey: ["grouped-products"] });
     },
   });
 };
